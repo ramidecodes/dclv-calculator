@@ -1,9 +1,10 @@
 {
-  "name": "react-slingshot",
-  "version": "7.0.0",
-  "description": "Starter kit for creating apps with React and Redux",
+  "name": "dclv-calculator",
+  "version": "1.0.0",
+  "description": "Digital Client Lifetime Value Calculator",
   "engines": {
-    "npm": ">=3"
+    "npm": ">=3",
+    "node": ">=8"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
@@ -28,8 +29,8 @@
     "open:cover": "npm run test:cover && opn ./coverage/lcov-report/index.html",
     "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
   },
-  "author": "Cory House",
-  "license": "MIT",
+  "author": "Ramiro Ramirez",
+  "license": "GPL-3.0",
   "dependencies": {
     "object-assign": "4.1.0",
     "react": "15.5.4",
@@ -95,20 +96,13 @@
     "react",
     "reactjs",
     "react-router",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
     "webpack",
     "redux",
-    "flux",
-    "boilerplate",
-    "starter"
+    "digital client"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/coryhouse/react-slingshot"
+    "url": "https://github.com/ecovirtual/dclv-calculator"
   },
   "jest": {
     "moduleNameMapper": {
