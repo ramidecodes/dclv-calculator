@@ -1,13 +1,16 @@
+// External Imports
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
 /* Variables */
 $vin-blue: #5bb7db;
 $vin-green: #20c9b9;
 $vin-red: #ff0000;
 $text-size: 16px;
-$title-size: 1.3rem;
+$title-size: 1.9em;
 
 /* Styles */
 body {
-  font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font: 18px 'Roboto', sans-serif;
   line-height: 1.4em;
   color: #4d4d4d;
   min-width: 230px;
@@ -23,10 +26,11 @@ td {
 	padding: 12px;
 }
 h1 {
-  size: $title-size;
+  font-size: $title-size;
+  line-height: 1.4em;
 }
 h1, h2 {
-	color: $vin-blue;
+	color: $vin-green;
 }
 
 .savings { color: $vin-green; }
