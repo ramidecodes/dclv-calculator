@@ -4,11 +4,10 @@ import {Link} from 'react-router';
 const HomePage = () => {
   return (
     <div>
-      <h1>DCLV Calculator</h1>
+      <h1>Calculadora para el Valor de un Cliente Digital</h1>
 
-      <h2>Digital Client Lifetime Value Calculator</h2>
       <ol>
-        <li>Go to the  <Link to="fuel-savings">Calculator</Link></li>
+        <li>Ir a la <Link to="fuel-savings">Calculadora</Link></li>
       </ol>
     </div>
   );

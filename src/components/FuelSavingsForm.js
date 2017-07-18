@@ -29,49 +29,49 @@ class FuelSavingsForm extends React.Component {
 
     return (
       <div>
-        <h2>Fuel Savings Analysis</h2>
+        <h2>Calculadora para el Valor de un Cliente Digital</h2>
         <table>
           <tbody>
           <tr>
-            <td><label htmlFor="newMpg">New Vehicle MPG</label></td>
+            <td><label htmlFor="newMpg"><strong>pt</strong> (Ingresos por clientes en un tiempo "t")</label></td>
             <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="newMpg" value={fuelSavings.newMpg}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="tradeMpg">Trade-in MPG</label></td>
+            <td><label htmlFor="tradeMpg"><strong>ct</strong> (Costes por servicios hacia el cliente en un tiempo "t")</label></td>
             <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="tradeMpg" value={fuelSavings.tradeMpg}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="newPpg">New Vehicle price per gallon</label></td>
+            <td><label htmlFor="newPpg"><strong>TED</strong> (Tasa de Engagement Digital)</label></td>
             <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="newPpg" value={fuelSavings.newPpg}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="tradePpg">Trade-in price per gallon</label></td>
+            <td><label htmlFor="tradePpg"><strong>i</strong> (Tasa de descuento)</label></td>
             <td><FuelSavingsTextInput onChange={this.fuelSavingsKeypress} name="tradePpg" value={fuelSavings.tradePpg}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="milesDriven">Miles Driven</label></td>
+            <td><label htmlFor="milesDriven"><strong>T</strong> (Horizonte de tiempo para la estimación)</label></td>
             <td>
               <FuelSavingsTextInput
                 onChange={this.fuelSavingsKeypress}
                 name="milesDriven"
                 value={fuelSavings.milesDriven}/>
-              miles per
+              <strong>Período</strong>
               <select
                 name="milesDrivenTimeframe"
                 onChange={this.onTimeframeChange}
                 value={fuelSavings.milesDrivenTimeframe}>
-                <option value="week">Week</option>
-                <option value="month">Month</option>
-                <option value="year">Year</option>
+                <option value="week">Semanal</option>
+                <option value="month">Mensual</option>
+                <option value="year">Anual</option>
               </select>
             </td>
           </tr>
           <tr>
-            <td><label>Date Modified</label></td>
+            <td><label>Última modificación</label></td>
             <td>{fuelSavings.dateModified}</td>
           </tr>
           </tbody>
@@ -80,7 +80,7 @@ class FuelSavingsForm extends React.Component {
         <hr/>
 
         {fuelSavings.necessaryDataIsProvidedToCalculateSavings && <FuelSavingsResults savings={fuelSavings.savings}/>}
-        <input type="submit" value="Save" onClick={this.save}/>
+        <input type="submit" value="Calcular" onClick={this.save}/>
       </div>
     );
   }
