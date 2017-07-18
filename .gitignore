@@ -40,5 +40,4 @@ dist
 .DS_Store
 
 # Tools and Project related build process
-tools
 docs
