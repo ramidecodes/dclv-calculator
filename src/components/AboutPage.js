@@ -6,10 +6,12 @@ import '../styles/about-page.css';
 const AboutPage = () => {
   return (
     <div>
-      <h2 className="alt-header">About</h2>
+      <h1 className="alt-header">Descripción del Proyecto</h1>
       <p>
-        This is a calculator based on <a href="https://www.linkedin.com/in/josenortesosa?ppe=1" target="_blank">Jose Norte's</a> PhD thesis on how to calculate the value of a Digital Client.
+        Una calculadora basada en la tesis doctoral de <a href="https://www.linkedin.com/in/josenortesosa?ppe=1" target="_blank">Jose Norte</a> donde se explica cómo calcular el valor de un Cliente Digital.
       </p>
+      <p>Para más información sobre la tesis: <a href="#" target="_blank">x</a></p>
+      <p>Repositorio de la calculadora en <a href="https://github.com/ecovirtual/dclv-calculator" target="_blank">github</a></p>
     </div>
   );
 };

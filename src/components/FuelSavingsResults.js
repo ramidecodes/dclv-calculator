@@ -10,8 +10,8 @@ const FuelSavingsResults = ({savings}) => {
   // console.log(savings);
   // console.log("typeof", typeof(savings.monthly));
   const savingsExist = NumberFormatter.scrubFormatting(savings.monthly) > 0;
-  const savingsClass = savingsExist ? 'savings' : 'loss';
-  const resultLabel = savingsExist ? 'Savings' : 'Loss';
+  const savingsClass = savingsExist ? 'valor del cliente digital' : 'error de Calculo';
+  const resultLabel = savingsExist ? 'Valor del Cliente Digital' : 'Error de Calculo';
 
   // You can even exclude the return statement below if the entire component is
   // composed within the parentheses. Return is necessary here because some
@@ -20,14 +20,14 @@ const FuelSavingsResults = ({savings}) => {
     <table>
       <tbody>
       <tr>
-        <td className="fuel-savings-label">{resultLabel}</td>
+        <td className="fuel-savings-label"><strong>{resultLabel}</strong></td>
         <td>
           <table>
             <tbody>
             <tr>
-              <td>Monthly</td>
-              <td>1 Year</td>
-              <td>3 Year</td>
+              <td>Mensual</td>
+              <td>Anual</td>
+              <td>3 Años</td>
             </tr>
             <tr>
               <td className={savingsClass}>{savings.monthly}</td>

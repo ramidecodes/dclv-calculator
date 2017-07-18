@@ -11,8 +11,6 @@ class App extends React.Component {
       <div>
         <IndexLink to="/">Inicio</IndexLink>
         {' | '}
-        <Link to="/fuel-savings">Calculadora</Link>
-        {' | '}
         <Link to="/about">Descripción General</Link>
         <br/>
         {this.props.children}

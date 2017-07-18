@@ -29,7 +29,7 @@ class FuelSavingsForm extends React.Component {
 
     return (
       <div>
-        <h2>Calculadora para el Valor de un Cliente Digital</h2>
+        <h1>Calculadora para el Valor de un Cliente Digital</h1>
         <table>
           <tbody>
           <tr>
