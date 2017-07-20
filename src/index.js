@@ -8,8 +8,8 @@ import Root from './components/Root';
 
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
-import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 import 'semantic-ui-css/semantic.min.css'; // Include minified css from Semantic UI
+import './styles/styles.scss'; // Yep, that's right. You can import SASS/CSS files too! Webpack will run the associated loader and plug this into the page.
 import { syncHistoryWithStore } from 'react-router-redux';
 
 const store = configureStore();

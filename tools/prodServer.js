@@ -1,13 +1,14 @@
-var express = require('express');
-var path = require('path');
-var open = require('open');
-var compression = require('compression');
+const express = require('express');
+const path = require('path');
+const open = require('open');
+const compression = require('compression');
+
 /* eslint-disable no-console, no-unused-vars */
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production';
 
-var port = 3000;
-var app = express();
+const port = 3000;
+const app = express();
 
 app.use(compression());
 app.use(express.static('dist'));
