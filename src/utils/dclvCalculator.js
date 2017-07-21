@@ -1,6 +1,6 @@
 import mathHelper from './mathHelper';
 import NumberFormatter from './numberFormatter';
-
+// Calculate DCLV here
 // This file uses the factory function pattern instead of a class.
 // Just showing an alternative to using a class.
 // This declares a function with a private method.
@@ -45,7 +45,7 @@ const dclvCalculator = function () {
     },
 
 
-    necessaryDataIsProvidedToCalculateSavings: function (settings) {
+    necessaryDataIsProvidedToCalculate: function (settings) {
       return settings.newMpg > 0
         && settings.tradeMpg > 0
         && settings.newPpg > 0
@@ -53,7 +53,7 @@ const dclvCalculator = function () {
         && settings.milesDriven > 0;
     },
 
-    calculateSavings: function (settings) {
+    calculateCalculations: function (settings) {
       const monthlySavings = this.calculateSavingsPerMonth(settings);
 
       return {

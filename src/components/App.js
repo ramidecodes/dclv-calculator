@@ -24,8 +24,3 @@ App.propTypes = {
 };
 
 export default App;
-
-/* <IndexLink to="/">Inicio</IndexLink>
-{' | '}
-<Link to="/about">Descripción General</Link>
-<br/> */

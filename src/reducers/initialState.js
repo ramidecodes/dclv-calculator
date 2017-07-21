@@ -1,5 +1,5 @@
 export default {
-  fuelSavings: {
+  calculations: {
     newMpg: '',
     tradeMpg: '',
     newPpg: '',
@@ -8,7 +8,7 @@ export default {
     milesDrivenTimeframe: 'week',
     displayResults: false,
     dateModified: null,
-    necessaryDataIsProvidedToCalculateSavings: false,
+    necessaryDataIsProvidedToCalculate: false,
     savings: {
       monthly: 0,
       annual: 0,

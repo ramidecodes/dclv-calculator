@@ -6,7 +6,7 @@ Object {
   "displayResults": false,
   "milesDriven": 100,
   "milesDrivenTimeframe": "year",
-  "necessaryDataIsProvidedToCalculateSavings": false,
+  "necessaryDataIsProvidedToCalculate": false,
   "newMpg": 20,
   "newPpg": 1.5,
   "savings": Object {
