@@ -3,7 +3,7 @@ import * as ActionTypes from '../constants/actionTypes';
 import MockDate from 'mockdate';
 import { createStore } from 'redux';
 
-import calculator from '../utils/calculationsCalculator';
+import calculator from '../utils/dclvCalculator';
 import {getFormattedDateTime} from '../utils/dateHelper';
 import initialState from '../reducers/initialState';
 import rootReducer from '../reducers';

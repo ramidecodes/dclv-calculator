@@ -1,6 +1,6 @@
 import {SAVE_CALCULATIONS, CALCULATE_CALCULATIONS} from '../constants/actionTypes';
-import calculator from '../utils/calculationsCalculator';
-import objectAssign from 'object-assign';
+import calculator from '../utils/dclvCalculator';
+//import objectAssign from 'object-assign';
 import initialState from './initialState';
 
 // IMPORTANT: Note that with Redux, state should NEVER be changed.
@@ -15,10 +15,10 @@ export default function calculationsReducer(state = initialState.calculations, a
     case SAVE_CALCULATIONS:
       // For this example, just simulating a save by changing date modified.
       // In a real app using Redux, you might use redux-thunk and handle the async call in calculatorActions.js
-      return objectAssign({}, state, {dateModified: action.dateModified});
+      return Object.assign({}, state, {dateModified: action.dateModified});
 
     case CALCULATE_CALCULATIONS:
-      newState = objectAssign({}, state);
+      newState = Object.assign({}, state);
       newState[action.fieldName] = action.value;
       newState.necessaryDataIsProvidedToCalculate = calculator().necessaryDataIsProvidedToCalculate(newState);
       newState.dateModified = action.dateModified;
