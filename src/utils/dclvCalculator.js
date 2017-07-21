@@ -44,7 +44,7 @@ const dclvCalculator = function () {
       return mathHelper.roundNumber(savingsPerMonth, 2);
     },
 
-
+    // Check if we have all the data to calculate
     necessaryDataIsProvidedToCalculate: function (settings) {
       return settings.newMpg > 0
         && settings.tradeMpg > 0
@@ -52,7 +52,7 @@ const dclvCalculator = function () {
         && settings.tradePpg > 0
         && settings.milesDriven > 0;
     },
-
+    // Delivers final calculation to calculationsReducer
     calculateCalculations: function (settings) {
       const monthlySavings = this.calculateSavingsPerMonth(settings);
 

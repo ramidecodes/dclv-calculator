@@ -9,14 +9,14 @@ class CalculatorForm extends React.Component {
 
     this.save = this.save.bind(this);
     this.onTimeframeChange = this.onTimeframeChange.bind(this);
-    this.fuelSavingsKeypress = this.fuelSavingsKeypress.bind(this);
+    this.calculatorKeyPress = this.calculatorKeyPress.bind(this);
   }
 
   onTimeframeChange(e) {
     this.props.calculateCalculations(this.props.calculations, 'milesDrivenTimeframe', e.target.value);
   }
 
-  fuelSavingsKeypress(name, value) {
+  calculatorKeyPress(name, value) {
     this.props.calculateCalculations(this.props.calculations, name, value);
   }
 
@@ -34,29 +34,29 @@ class CalculatorForm extends React.Component {
           <tbody>
           <tr>
             <td><label htmlFor="newMpg"><strong>pt</strong> (Ingresos por clientes en un tiempo "t")</label></td>
-            <td><CalculatorTextInput onChange={this.fuelSavingsKeypress} name="newMpg" value={calculations.newMpg}/>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="newMpg" value={calculations.newMpg}/>
             </td>
           </tr>
           <tr>
             <td><label htmlFor="tradeMpg"><strong>ct</strong> (Costes por servicios hacia el cliente en un tiempo "t")</label></td>
-            <td><CalculatorTextInput onChange={this.fuelSavingsKeypress} name="tradeMpg" value={calculations.tradeMpg}/>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="tradeMpg" value={calculations.tradeMpg}/>
             </td>
           </tr>
           <tr>
             <td><label htmlFor="newPpg"><strong>TED</strong> (Tasa de Engagement Digital)</label></td>
-            <td><CalculatorTextInput onChange={this.fuelSavingsKeypress} name="newPpg" value={calculations.newPpg}/>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="newPpg" value={calculations.newPpg}/>
             </td>
           </tr>
           <tr>
             <td><label htmlFor="tradePpg"><strong>i</strong> (Tasa de descuento)</label></td>
-            <td><CalculatorTextInput onChange={this.fuelSavingsKeypress} name="tradePpg" value={calculations.tradePpg}/>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="tradePpg" value={calculations.tradePpg}/>
             </td>
           </tr>
           <tr>
             <td><label htmlFor="milesDriven"><strong>T</strong> (Horizonte de tiempo para la estimación)</label></td>
             <td>
               <CalculatorTextInput
-                onChange={this.fuelSavingsKeypress}
+                onChange={this.calculatorKeyPress}
                 name="milesDriven"
                 value={calculations.milesDriven}/>
               <strong>Período</strong>
@@ -69,10 +69,6 @@ class CalculatorForm extends React.Component {
                 <option value="year">Anual</option>
               </select>
             </td>
-          </tr>
-          <tr>
-            <td><label>Última modificación</label></td>
-            <td>{calculations.dateModified}</td>
           </tr>
           </tbody>
         </table>
