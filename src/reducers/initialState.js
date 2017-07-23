@@ -1,18 +1,12 @@
 export default {
   calculations: {
-    newMpg: '',
-    tradeMpg: '',
-    newPpg: '',
-    tradePpg: '',
-    milesDriven: '',
-    milesDrivenTimeframe: 'week',
+    pt: '',
+    ct: '',
+    ted: '',
+    icc: '',
+    dac: '',
     displayResults: false,
-    dateModified: null,
     necessaryDataIsProvidedToCalculate: false,
-    savings: {
-      monthly: 0,
-      annual: 0,
-      threeYear: 0
-    }
+    dclv: ''
   }
 };

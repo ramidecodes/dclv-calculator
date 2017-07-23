@@ -74,6 +74,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "20.0.4",
     "json-loader": "0.5.4",
+    "mathjs": "3.14.2",
     "mockdate": "2.0.1",
     "node-sass": "4.5.3",
     "npm-run-all": "4.0.2",

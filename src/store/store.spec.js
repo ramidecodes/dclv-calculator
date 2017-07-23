@@ -1,47 +1,33 @@
 import * as ActionTypes from '../constants/actionTypes';
-
-import MockDate from 'mockdate';
 import { createStore } from 'redux';
-
 import calculator from '../utils/dclvCalculator';
-import {getFormattedDateTime} from '../utils/dateHelper';
 import initialState from '../reducers/initialState';
 import rootReducer from '../reducers';
 
 describe('Store', () => {
-  let dateModified;
-  beforeAll(() => {
-    // hardcoded date for consistency in tests and snapshots on all machines
-    MockDate.set(new Date("1/31 23:14:01"));
-    dateModified = getFormattedDateTime();
-  });
-  afterAll(() => MockDate.reset());
 
   it('should display results when necessary data is provided', () => {
     const store = createStore(rootReducer, initialState);
 
     const actions = [
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'month' }
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'pt', value: 38 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'ct', value: 24 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'ted', value: 3.75 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'icc', value: 3.75 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'dac', value: 30 },
     ];
     actions.forEach(action => store.dispatch(action));
 
     const actual = store.getState();
     const expected = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'month',
+      pt: 38,
+      ct: 24,
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
       displayResults: false,
-      dateModified,
       necessaryDataIsProvidedToCalculate: true,
-      savings: calculator().calculateCalculations(store.getState().calculations)
+      dclv: calculator().calculateCalculations(store.getState().calculations)
     };
 
     expect(actual.calculations).toEqual(expected);
@@ -51,12 +37,11 @@ describe('Store', () => {
     const store = createStore(rootReducer, initialState);
 
     const actions = [
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
-      // { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'month' }
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'pt', value: 38 },
+      // { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'ct', value: 24 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'ted', value: 3.75 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'icc', value: 3.75 },
+      { type: ActionTypes.CALCULATE_CALCULATIONS, settings: store.getState(), fieldName: 'dac', value: 30 },
     ];
 
     actions.forEach(action => store.dispatch(action));
@@ -64,76 +49,17 @@ describe('Store', () => {
     const actual = store.getState();
 
     const expected = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: '',
-      tradePpg: 1.5,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'month',
+      pt: 38,
+      ct: '',
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
       displayResults: false,
-      dateModified,
       necessaryDataIsProvidedToCalculate: false,
-      savings: { annual: 0, monthly: 0, threeYear: 0 }
+      dclv: "0"
     };
 
 
     expect(actual.calculations).toEqual(expected);
-  });
-
-
-  it('should handle a flurry of actions', () => {
-    const store = createStore(rootReducer, initialState);
-
-    const actions = [
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'month' },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 },
-      { type: ActionTypes.SAVE_CALCULATIONS, dateModified, settings: store.getState() },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 1.50 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'week' },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newMpg', value: 20 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradeMpg', value: 10 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'newPpg', value: 1.50 }
-    ];
-    actions.forEach(action => store.dispatch(action));
-
-    calculator().calculateCalculations(store.getState().calculations);
-
-    const moreActions = [
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'tradePpg', value: 0 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDriven', value: 100 },
-      { type: ActionTypes.CALCULATE_CALCULATIONS, dateModified, settings: store.getState(), fieldName: 'milesDrivenTimeframe', value: 'year' }
-    ];
-
-    moreActions.forEach(action => store.dispatch(action));
-
-    const actual = store.getState();
-    //const expected = {
-    //  newMpg: 20,
-    //  tradeMpg: 10,
-    //  newPpg: 1.50,
-    //  tradePpg: 0,
-    //  milesDriven: 100,
-    //  milesDrivenTimeframe: 'year',
-    //  displayResults: false,
-    //  dateModified,
-    //  necessaryDataIsProvidedToCalculate: false,
-    //  savings: lastGoodSavings
-    //};
-    //
-    //expect(actual.calculations).toEqual(expected);
-
-    // with jest snapshots the above assertion can be replaced with this one line
-    // jest will store the value in a file within ./__snapshots__
-    // snapshots can/should be committed and reviewed
-    // jest will also update snapshot or delete unused ones using the command `npm run test -- -u`
-    expect(actual.calculations).toMatchSnapshot();
   });
 });

@@ -13,7 +13,7 @@ class CalculatorForm extends React.Component {
   }
 
   onTimeframeChange(e) {
-    this.props.calculateCalculations(this.props.calculations, 'milesDrivenTimeframe', e.target.value);
+    this.props.calculateCalculations(this.props.calculations, e.target.value);
   }
 
   calculatorKeyPress(name, value) {
@@ -33,49 +33,35 @@ class CalculatorForm extends React.Component {
         <table>
           <tbody>
           <tr>
-            <td><label htmlFor="newMpg"><strong>pt</strong> (Ingresos por clientes en un tiempo "t")</label></td>
-            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="newMpg" value={calculations.newMpg}/>
+            <td><label htmlFor="pt"><strong>pt</strong> (Ingresos por clientes en un tiempo "t")</label></td>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="pt" value={calculations.pt}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="tradeMpg"><strong>ct</strong> (Costes por servicios hacia el cliente en un tiempo "t")</label></td>
-            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="tradeMpg" value={calculations.tradeMpg}/>
+            <td><label htmlFor="ct"><strong>ct</strong> (Costes por servicios hacia el cliente en un tiempo "t")</label></td>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="ct" value={calculations.ct}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="newPpg"><strong>TED</strong> (Tasa de Engagement Digital)</label></td>
-            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="newPpg" value={calculations.newPpg}/>
+            <td><label htmlFor="ted"><strong>TED</strong> (Tasa de Engagement Digital)</label></td>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="ted" value={calculations.ted}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="tradePpg"><strong>i</strong> (Tasa de descuento)</label></td>
-            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="tradePpg" value={calculations.tradePpg}/>
+            <td><label htmlFor="icc"><strong>i</strong> (Tasa de descuento)</label></td>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="icc" value={calculations.icc}/>
             </td>
           </tr>
           <tr>
-            <td><label htmlFor="milesDriven"><strong>T</strong> (Horizonte de tiempo para la estimación)</label></td>
-            <td>
-              <CalculatorTextInput
-                onChange={this.calculatorKeyPress}
-                name="milesDriven"
-                value={calculations.milesDriven}/>
-              <strong>Período</strong>
-              <select
-                name="milesDrivenTimeframe"
-                onChange={this.onTimeframeChange}
-                value={calculations.milesDrivenTimeframe}>
-                <option value="week">Semanal</option>
-                <option value="month">Mensual</option>
-                <option value="year">Anual</option>
-              </select>
-            </td>
+            <td><label htmlFor="dac"><strong>DAC</strong> Costes de adquisición del cliente digial</label></td>
+            <td><CalculatorTextInput onChange={this.calculatorKeyPress} name="dac" value={calculations.dac}/></td>
           </tr>
           </tbody>
         </table>
 
         <hr/>
 
-        {calculations.necessaryDataIsProvidedToCalculate && <CalculatorResults savings={calculations.savings}/>}
+        {calculations.necessaryDataIsProvidedToCalculate && <CalculatorResults dclv={calculations.dclv}/>}
         <input type="submit" value="Calcular" onClick={this.save}/>
       </div>
     );

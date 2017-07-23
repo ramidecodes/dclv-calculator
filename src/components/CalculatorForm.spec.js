@@ -11,20 +11,15 @@ describe('<CalculatorForm />', () => {
     const calculateCalculations = () => {
     };
     const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
+      pt: 38,
+      ct: 24,
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
+      ht: 1,
       displayResults: false,
-      dateModified: null,
       necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
+      dclv: 28.94
     };
 
     const wrapper = shallow(<CalculatorForm
@@ -35,52 +30,16 @@ describe('<CalculatorForm />', () => {
     const allInputs = wrapper.find(CalculatorTextInput);
 
     expect(allInputs.length).toEqual(5);
-    expect(allInputs.at(0).props().name).toEqual('newMpg');
-    expect(allInputs.at(0).props().value).toEqual(calculations.newMpg);
-    expect(allInputs.at(1).props().name).toEqual('tradeMpg');
-    expect(allInputs.at(1).props().value).toEqual(calculations.tradeMpg);
-    expect(allInputs.at(2).props().name).toEqual('newPpg');
-    expect(allInputs.at(2).props().value).toEqual(calculations.newPpg);
-    expect(allInputs.at(3).props().name).toEqual('tradePpg');
-    expect(allInputs.at(3).props().value).toEqual(calculations.tradePpg);
-    expect(allInputs.at(4).props().name).toEqual('milesDriven');
-    expect(allInputs.at(4).props().value).toEqual(calculations.milesDriven);
-  });
-
-  it('should contain options to change miles driven timeframe', () => {
-    const saveCalculations = () => {
-    };
-    const calculateCalculations = () => {
-    };
-    const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
-    const wrapper = shallow(<CalculatorForm
-      saveCalculations={saveCalculations}
-      calculateCalculations={calculateCalculations}
-      calculations={calculations}
-    />);
-    const expectedOption1 = '<option value="week">Semanal</option>';
-    const expectedOption2 = '<option value="month">Mensual</option>';
-    const expectedOption3 = '<option value="year">Anual</option>';
-
-    expect(wrapper.find('select').childAt(0).html()).toEqual(expectedOption1);
-    expect(wrapper.find('select').childAt(1).html()).toEqual(expectedOption2);
-    expect(wrapper.find('select').childAt(2).html()).toEqual(expectedOption3);
+    expect(allInputs.at(0).props().name).toEqual('pt');
+    expect(allInputs.at(0).props().value).toEqual(calculations.pt);
+    expect(allInputs.at(1).props().name).toEqual('ct');
+    expect(allInputs.at(1).props().value).toEqual(calculations.ct);
+    expect(allInputs.at(2).props().name).toEqual('ted');
+    expect(allInputs.at(2).props().value).toEqual(calculations.ted);
+    expect(allInputs.at(3).props().name).toEqual('icc');
+    expect(allInputs.at(3).props().value).toEqual(calculations.icc);
+    expect(allInputs.at(4).props().name).toEqual('dac');
+    expect(allInputs.at(4).props().value).toEqual(calculations.dac);
   });
 
   it('should contain <CalculatorResults /> when necessary conditions are met', () => {
@@ -89,20 +48,15 @@ describe('<CalculatorForm />', () => {
     const calculateCalculations = () => {
     };
     const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
+      pt: 38,
+      ct: 24,
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
+      ht: 1,
       displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculate: true,
-      savings: {
-        monthly: 10,
-        annual: 120,
-        threeYear: 360
-      }
+      necessaryDataIsProvidedToCalculate: false,
+      dclv: 28.94
     };
 
     const wrapper = shallow(<CalculatorForm
@@ -110,62 +64,26 @@ describe('<CalculatorForm />', () => {
       calculateCalculations={calculateCalculations}
       calculations={calculations}
     />);
-    const expected = <CalculatorResults savings={calculations.savings} />;
+    const expected = <CalculatorResults dclv={calculations.dclv} />;
 
     expect(wrapper.contains(expected)).toBeTruthy();
   });
 
-  it('should not contain <CalculatorResults /> when necessary conditions are not met', () => {
-    const saveCalculations = () => {
-    };
-    const calculateCalculations = () => {
-    };
-    const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
-    const wrapper = shallow(<CalculatorForm
-      saveCalculations={saveCalculations}
-      calculateCalculations={calculateCalculations}
-      calculations={calculations}
-    />);
-    const expected = <CalculatorResults savings={calculations.savings} />;
-
-    expect(wrapper.contains(expected)).toBeFalsy();
-  });
 
   it('should handle form submit', () => {
     const saveCalculations = jest.fn();
     const calculateCalculations = () => {
     };
     const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
+      pt: 38,
+      ct: 24,
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
+      ht: 1,
       displayResults: false,
-      dateModified: null,
       necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
+      dclv: 28.94
     };
 
     const wrapper = shallow(<CalculatorForm
@@ -184,20 +102,15 @@ describe('<CalculatorForm />', () => {
     const calculateCalculations = () => {
     };
     const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
+      pt: 38,
+      ct: 24,
+      ted: 3.75,
+      icc: 3.75,
+      dac: 30,
+      ht: 1,
       displayResults: false,
-      dateModified: null,
       necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
+      dclv: 28.94
     };
 
     const wrapper = shallow(<CalculatorForm
@@ -210,68 +123,4 @@ describe('<CalculatorForm />', () => {
     expect(saveCalculations).toBeCalledWith(calculations);
   });
 
-
-  it('should calculate fuel savings on text input change', () => {
-    const saveCalculations = () => {
-    };
-    const calculateCalculations = jest.fn();
-    const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
-    const wrapper = shallow(<CalculatorForm
-      saveCalculations={saveCalculations}
-      calculateCalculations={calculateCalculations}
-      calculations={calculations}
-    />);
-
-    expect(calculateCalculations).not.toBeCalled();
-    wrapper.find(CalculatorTextInput).first().simulate('change');
-    expect(calculateCalculations).toBeCalled();
-  });
-
-  it('should calculate fuel savings on miles driven timeframe change', () => {
-    const saveCalculations = () => {
-    };
-    const calculateCalculations = jest.fn();
-    const calculations = {
-      newMpg: 20,
-      tradeMpg: 10,
-      newPpg: 1.50,
-      tradePpg: 1.50,
-      milesDriven: 100,
-      milesDrivenTimeframe: 'week',
-      displayResults: false,
-      dateModified: null,
-      necessaryDataIsProvidedToCalculate: false,
-      savings: {
-        monthly: 0,
-        annual: 0,
-        threeYear: 0
-      }
-    };
-
-    const wrapper = shallow(<CalculatorForm
-      saveCalculations={saveCalculations}
-      calculateCalculations={calculateCalculations}
-      calculations={calculations}
-    />);
-
-    expect(calculateCalculations).not.toBeCalled();
-    wrapper.find('select').simulate('change', { target: { value: 'year' } });
-    expect(calculateCalculations).toBeCalledWith(calculations, 'milesDrivenTimeframe', 'year');
-  });
 });

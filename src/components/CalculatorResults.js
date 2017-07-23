@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NumberFormatter from '../utils/numberFormatter';
+// import NumberFormatter from '../utils/numberFormatter';
 
 // This is a stateless functional component. (Also known as pure or dumb component)
 // More info: https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components
 // And https://medium.com/@joshblack/stateless-components-in-react-0-14-f9798f8b992d
-// Props are being destructured below to extract the savings object to shorten calls within component.
-const CalculatorResults = ({savings}) => {
-  // console.log(savings);
-  // console.log("typeof", typeof(savings.monthly));
-  const savingsExist = NumberFormatter.scrubFormatting(savings.monthly) > 0;
-  const savingsClass = savingsExist ? 'valor del cliente digital' : 'error de Calculo';
+// Props are being destructured below to extract the dclv object to shorten calls within component.
+const CalculatorResults = ({dclv}) => {
+  // console.log(dclv);
+  // console.log("typeof", typeof(dclv.monthly));
+  const savingsExist = dclv > 0;
+  const savingsClass = savingsExist ? 'clientedigital' : 'error';
   const resultLabel = savingsExist ? 'Valor del Cliente Digital' : 'Error de Calculo';
 
   // You can even exclude the return statement below if the entire component is
@@ -20,19 +20,15 @@ const CalculatorResults = ({savings}) => {
     <table>
       <tbody>
       <tr>
-        <td className="fuel-savings-label"><strong>{resultLabel}</strong></td>
+        <td className="dclv-label"><strong>{resultLabel}</strong></td>
         <td>
           <table>
             <tbody>
             <tr>
-              <td>Mensual</td>
-              <td>Anual</td>
-              <td>3 Años</td>
+              <td>DCLV</td>
             </tr>
             <tr>
-              <td className={savingsClass}>{savings.monthly}</td>
-              <td className={savingsClass}>{savings.annual}</td>
-              <td className={savingsClass}>{savings.threeYear}</td>
+              <td className={savingsClass}>{dclv}</td>
             </tr>
             </tbody>
           </table>
@@ -46,7 +42,7 @@ const CalculatorResults = ({savings}) => {
 // Note that this odd style is utilized for propType validation for now. Must be defined *after*
 // the component is defined, which is why it's separate and down here.
 CalculatorResults.propTypes = {
-  savings: PropTypes.object.isRequired
+  dclv: PropTypes.number.isRequired
 };
 
 export default CalculatorResults;

@@ -1,5 +1,7 @@
 import mathHelper from './mathHelper';
-import NumberFormatter from './numberFormatter';
+import math from 'mathjs';
+// import NumberFormatter from './numberFormatter';
+
 // Calculate DCLV here
 // This file uses the factory function pattern instead of a class.
 // Just showing an alternative to using a class.
@@ -8,59 +10,44 @@ import NumberFormatter from './numberFormatter';
 // Could arguably be called FuelSavingCalculatorFactory.
 const dclvCalculator = function () {
   // private
-  const calculateMonthlyCost = function (milesDrivenPerMonth, ppg, mpg) {
-    const gallonsUsedPerMonth = milesDrivenPerMonth / mpg;
-    return gallonsUsedPerMonth * ppg;
-  };
+  // const calculateTed = function (te, cr) {
+  //   let n = 1;
+  //   const ted = (te + cr) / n ;
+  //   return ted;
+  // };
 
   // public
   return {
-    calculateMilesDrivenPerMonth: function (milesDriven, milesDrivenTimeframe) {
-      const monthsPerYear = 12;
-      const weeksPerYear = 52;
 
-      switch (milesDrivenTimeframe) {
-        case 'week':
-          return (milesDriven * weeksPerYear) / monthsPerYear;
-        case 'month':
-          return milesDriven;
-        case 'year':
-          return milesDriven / monthsPerYear;
-        default:
-          throw new Error(`Unknown milesDrivenTimeframe passed: ${milesDrivenTimeframe}`);
-      }
-    },
+    calculateDclv: function (settings) {
 
-    calculateSavingsPerMonth: function (settings) {
-      if (!settings.milesDriven) {
-        return 0;
-      }
+      const pt = settings.pt;   // Ingresos por clientes en tiempo t
+      const ct = settings.ct;   // Costes directos
+      // const ted = this.calculateTed(settings.te, settings.cr);
+      const ted = settings.ted; // Tasa de engagement digital
+      const icc = settings.icc; // Tasa de descuento o coste de capital de empresa
+      const ht = 1;             // horizonte de tiempo
+      const dac = settings.dac; // Costes de adquisición del cliente digital
+      const dclv = math.eval((((pt - ct ) * ted ) / (ht + icc)) - dac);
 
-      const milesDrivenPerMonth = this.calculateMilesDrivenPerMonth(settings.milesDriven, settings.milesDrivenTimeframe);
-      const tradeFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, settings.tradePpg, settings.tradeMpg);
-      const newFuelCostPerMonth = calculateMonthlyCost(milesDrivenPerMonth, settings.newPpg, settings.newMpg);
-      const savingsPerMonth = tradeFuelCostPerMonth - newFuelCostPerMonth;
-
-      return mathHelper.roundNumber(savingsPerMonth, 2);
+      // return dclv;
+      return mathHelper.roundNumber(dclv, 2);
     },
 
     // Check if we have all the data to calculate
     necessaryDataIsProvidedToCalculate: function (settings) {
-      return settings.newMpg > 0
-        && settings.tradeMpg > 0
-        && settings.newPpg > 0
-        && settings.tradePpg > 0
-        && settings.milesDriven > 0;
+      return settings.pt > 0
+        && settings.ct > 0
+        && settings.ted > 0
+        && settings.icc > 0
+        && settings.dac > 0;
     },
+
     // Delivers final calculation to calculationsReducer
     calculateCalculations: function (settings) {
-      const monthlySavings = this.calculateSavingsPerMonth(settings);
+      const dclvValue = this.calculateDclv(settings);
 
-      return {
-        monthly: NumberFormatter.getCurrencyFormattedNumber(monthlySavings),
-        annual: NumberFormatter.getCurrencyFormattedNumber(monthlySavings * 12),
-        threeYear: NumberFormatter.getCurrencyFormattedNumber(monthlySavings * 12 * 3)
-      };
+      return dclvValue;
     }
   };
 };

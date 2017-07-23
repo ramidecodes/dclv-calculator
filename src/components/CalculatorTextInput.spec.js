@@ -21,7 +21,7 @@ describe('<CalculatorTextInput />', () => {
 
   it('should handle change', () => {
     const props = {
-      name: 'newMpg',
+      name: 'pt',
       onChange: jest.fn(),
       placeholder: 'Type Here',
       value: 100
@@ -35,6 +35,6 @@ describe('<CalculatorTextInput />', () => {
     expect(actual).toEqual(expected);
     expect(props.onChange).not.toBeCalled();
     wrapper.simulate('change', {target: {value: 101}});
-    expect(props.onChange).toBeCalledWith('newMpg', 101);
+    expect(props.onChange).toBeCalledWith('pt', 101);
   });
 });

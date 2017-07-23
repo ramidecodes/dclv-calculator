@@ -1,40 +1,28 @@
 import * as ActionTypes from '../constants/actionTypes';
 import * as ActionCreators from './calculatorActions';
 
-import MockDate from 'mockdate';
+// import MockDate from 'mockdate';
 
-import {getFormattedDateTime} from '../utils/dateHelper';
+// import {getFormattedDateTime} from '../utils/dateHelper';
 
 describe('Actions', () => {
-  let dateModified;
-  beforeAll(() => {
-    MockDate.set(new Date());
-    dateModified = getFormattedDateTime();
-  });
-  afterAll(() => MockDate.reset());
 
   const appState = {
-    newMpg: 20,
-    tradeMpg: 10,
-    newPpg: 1.50,
-    tradePpg: 1.50,
-    milesDriven: 100,
-    milesDrivenTimeframe: 'week',
+    pt: 38,
+    ct: 24,
+    ted: 3.75,
+    icc: 3.75,
+    dac: 30,
+    ht: 1,
     displayResults: false,
-    dateModified: null,
     necessaryDataIsProvidedToCalculate: false,
-    savings: {
-      monthly: 0,
-      annual: 0,
-      threeYear: 0
-    }
+    dclv: 28.95
   };
 
-  it('should create an action to save fuel savings', () => {
+  it('should create an action to save dclv', () => {
     const dispatch = jest.fn();
     const expected = {
       type: ActionTypes.SAVE_CALCULATIONS,
-      dateModified,
       settings: appState
     };
 
@@ -46,13 +34,12 @@ describe('Actions', () => {
     expect(dispatch).toBeCalledWith(expected);
   });
 
-  it('should create an action to calculate fuel savings', () => {
-    const fieldName = 'newMpg';
-    const value = 100;
+  it('should create an action to calculate dclv', () => {
+    const fieldName = 'pt';
+    const value = 38;
     const actual = ActionCreators.calculateCalculations(appState, fieldName, value);
     const expected = {
       type: ActionTypes.CALCULATE_CALCULATIONS,
-      dateModified,
       settings: appState,
       fieldName,
       value
